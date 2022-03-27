@@ -75,7 +75,7 @@ categories. Compute the training error rate of the resulting tree.
 
 ## **2 Cluster Analysis**
 This part uses the wholesale customers data set (https://archive.ics.uci.edu/ml/datasets/
-wholesale+customers) from the UCI Machine Learning Repository to identify similar groups of customers based on 8 attributes. For this part of the coursework, the attributes Channel and Region
+wholesale+customers) from the UCI Machine Learning Repository to identify similar groups of customers based on 8 attributes. For this part of the coursework, the attributes Channel and Region
 should be dropped. Only the following 6 numeric attributes should be considered:
 <table style="text-align:center" >
         <tr>
@@ -111,10 +111,10 @@ should be dropped. Only the following 6 numeric attributes should be considered:
 1. Compute the mean, standard deviation, minimum, and maximum value for each
 attribute. Round the mean and standard deviation to the closest integers.
 
-2. Divide the data points into k clusters, for k ∈ {3, 5, 10}, using kmeans and agglomerative hierarchical clustering. Because the performance of kmeans (e.g. number of iterations)
+2. Divide the data points into k clusters, for k ∈ {3, 5, 10}, using kmeans and agglomerative hierarchical clustering. Because the performance of kmeans (e.g. number of iterations)
 is significantly affected by the initial cluster center selection, repeat 10 executions of kmeans for
 each k value. Next, standardize each attribute value by subtracting with the mean and then
-dividing with the standard deviation for that attribute. Repeat the previous kmeans and agglomerative hierarchical clustering executions with the standardized data set. Identify which run
+dividing with the standard deviation for that attribute. Repeat the previous kmeans and agglomerative hierarchical clustering executions with the standardized data set. Identify which run
 resulted in the best set of clusters using the Silhouette score as your evaluation metric. Visualize
 the best set of clusters computed in the previous question. For this, construct a scatterplot for
 each pair of attributes using Pyplot. Therefore, 15 scatter plots should be constructed in total.
@@ -172,7 +172,7 @@ of all words (including repetitions), the number of all distinct words and the 1
 words in the corpus. Remove stop words, words with ≤ 2 characters, and reduce each word to
 its stem. You are now able to recompute the 10 most frequent words in the modified corpus.
 What do you observe?
-4. This task can be done individually from the previous three. Store the coronavirus tweets.py corpus in a numpy array and produce a sparse representation of the termdocument matrix with a CountVectorizer. Next, produce a Multinomial Naive Bayes classifier
+4. This task can be done individually from the previous three. Store the coronavirus tweets.py corpus in a numpy array and produce a sparse representation of the term document matrix with a CountVectorizer. Next, produce a Multinomial Naive Bayes classifier
 using the provided data set. What is the classifier’s training accuracy? A CountVectorizer allows
 limiting the range of frequencies and number of words included in the term-document matrix.
 Appropriately tune these parameters to achieve the highest classification accuracy you can.
