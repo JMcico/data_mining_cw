@@ -1,0 +1,392 @@
+------------------Part 1--------------------
+--------original dataframe-----------
+       age         workclass  education  ...  hoursperweek native-country  class
+0        2         State-gov  Bachelors  ...             2  United-States  <=50K
+1        3  Self-emp-not-inc  Bachelors  ...             0  United-States  <=50K
+2        2           Private    HS-grad  ...             2  United-States  <=50K
+3        3           Private       11th  ...             2  United-States  <=50K
+4        1           Private  Bachelors  ...             2           Cuba  <=50K
+...    ...               ...        ...  ...           ...            ...    ...
+48837    2           Private  Bachelors  ...             2  United-States  <=50K
+48838    4               NaN    HS-grad  ...             2  United-States  <=50K
+48839    2           Private  Bachelors  ...             3  United-States  <=50K
+48840    2           Private  Bachelors  ...             2  United-States  <=50K
+48841    1      Self-emp-inc  Bachelors  ...             3  United-States   >50K
+
+[48842 rows x 14 columns]
+--------number of rows-----------
+48842
+--------column names-----------
+['age', 'workclass', 'education', 'education-num', 'marital-status', 'occupation', 'relationship', 'race', 'sex', 'capitalgain', 'capitalloss', 'hoursperweek', 'native-country', 'class']
+--------number of missing values-----------
+6465
+--------missing columns-----------
+['workclass', 'occupation', 'native-country']
+--------percentage-----------
+21.871
+--------clean dataframe-----------
+       age         workclass  education  ...  hoursperweek native-country  class
+0        2         State-gov  Bachelors  ...             2  United-States  <=50K
+1        3  Self-emp-not-inc  Bachelors  ...             0  United-States  <=50K
+2        2           Private    HS-grad  ...             2  United-States  <=50K
+3        3           Private       11th  ...             2  United-States  <=50K
+4        1           Private  Bachelors  ...             2           Cuba  <=50K
+...    ...               ...        ...  ...           ...            ...    ...
+48836    1           Private  Bachelors  ...             2  United-States  <=50K
+48837    2           Private  Bachelors  ...             2  United-States  <=50K
+48839    2           Private  Bachelors  ...             3  United-States  <=50K
+48840    2           Private  Bachelors  ...             2  United-States  <=50K
+48841    1      Self-emp-inc  Bachelors  ...             3  United-States   >50K
+
+[45222 rows x 14 columns]
+--------one hot encoding-----------
+       age_0  age_1  ...  native-country_Vietnam  native-country_Yugoslavia
+0          0      0  ...                       0                          0
+1          0      0  ...                       0                          0
+2          0      0  ...                       0                          0
+3          0      0  ...                       0                          0
+4          0      1  ...                       0                          0
+...      ...    ...  ...                     ...                        ...
+48836      0      1  ...                       0                          0
+48837      0      0  ...                       0                          0
+48839      0      0  ...                       0                          0
+48840      0      0  ...                       0                          0
+48841      0      1  ...                       0                          0
+
+[45222 rows x 134 columns]
+--------label encoding-----------
+0        0
+1        0
+2        0
+3        0
+4        0
+        ..
+45217    0
+45218    0
+45219    0
+45220    0
+45221    1
+Length: 45222, dtype: int32
+--------decision tree predict-----------
+0        0
+1        0
+2        0
+3        0
+4        0
+        ..
+45217    0
+45218    0
+45219    1
+45220    0
+45221    1
+Length: 45222, dtype: int32
+--------error rate-----------
+0.08279156162929546
+
+------------------Part 2--------------------
+--------original dataframe-----------
+     Fresh   Milk  Grocery  Frozen  Detergents_Paper  Delicassen
+0    12669   9656     7561     214              2674        1338
+1     7057   9810     9568    1762              3293        1776
+2     6353   8808     7684    2405              3516        7844
+3    13265   1196     4221    6404               507        1788
+4    22615   5410     7198    3915              1777        5185
+..     ...    ...      ...     ...               ...         ...
+435  29703  12051    16027   13135               182        2204
+436  39228   1431      764    4510                93        2346
+437  14531  15488    30243     437             14841        1867
+438  10290   1981     2232    1038               168        2125
+439   2787   1698     2510      65               477          52
+
+[440 rows x 6 columns]
+--------summary statistics-----------
+                   mean    std  min     max
+Fresh             12000  12647    3  112151
+Milk               5796   7380   55   73498
+Grocery            7951   9503    3   92780
+Frozen             3072   4855   25   60869
+Detergents_Paper   2881   4768    3   40827
+Delicassen         1525   2820    3   47943
+--------standardize-----------
+        Fresh      Milk   Grocery    Frozen  Detergents_Paper  Delicassen
+0    0.052873  0.522972 -0.041068 -0.588697         -0.043519   -0.066264
+1   -0.390857  0.543839  0.170125 -0.269829          0.086309    0.089050
+2   -0.446521  0.408073 -0.028125 -0.137379          0.133080    2.240742
+3    0.099998 -0.623310 -0.392530  0.686363         -0.498021    0.093305
+4    0.839284 -0.052337 -0.079266  0.173661         -0.231654    1.297870
+..        ...       ...       ...       ...               ...         ...
+435  1.399719  0.847482  0.849793  2.072862         -0.566186    0.240817
+436  2.152842 -0.591469 -0.756304  0.296223         -0.584853    0.291170
+437  0.200098  1.313176  2.345716 -0.542762          2.508362    0.121318
+438 -0.135230 -0.516947 -0.601829 -0.418964         -0.569122    0.212804
+439 -0.728478 -0.555292 -0.572575 -0.619389         -0.504313   -0.522275
+
+[440 rows x 6 columns]
+--------k means-----------
+3 means clustering:
+0      1
+1      2
+2      2
+3      1
+4      1
+      ..
+435    1
+436    1
+437    2
+438    1
+439    1
+Length: 440, dtype: int32
+clustering score: 
+0.33968745809017253
+5 means clustering:
+0      4
+1      0
+2      0
+3      4
+4      2
+      ..
+435    2
+436    2
+437    0
+438    4
+439    4
+Length: 440, dtype: int32
+clustering score: 
+0.35155537824091104
+10 means clustering:
+0      5
+1      5
+2      2
+3      7
+4      8
+      ..
+435    7
+436    8
+437    0
+438    9
+439    9
+Length: 440, dtype: int32
+clustering score: 
+0.3043984391534627
+--------k means++ -----------
+3 means clustering:
+0      1
+1      1
+2      1
+3      1
+4      1
+      ..
+435    1
+436    1
+437    0
+438    1
+439    1
+Length: 440, dtype: int32
+clustering score: 
+0.5440505278794852
+5 means clustering:
+0      0
+1      1
+2      1
+3      0
+4      2
+      ..
+435    2
+436    2
+437    1
+438    0
+439    0
+Length: 440, dtype: int32
+clustering score: 
+0.36807191214496154
+10 means clustering:
+0      3
+1      3
+2      3
+3      4
+4      9
+      ..
+435    4
+436    9
+437    1
+438    0
+439    0
+Length: 440, dtype: int32
+clustering score: 
+0.3296327127127464
+--------agglomerative clustering-----------
+3 agglomerative clustering:
+0      0
+1      0
+2      0
+3      0
+4      0
+      ..
+435    0
+436    0
+437    0
+438    0
+439    0
+Length: 440, dtype: int64
+clustering score: 
+0.7675801420229834
+5 agglomerative clustering:
+0      2
+1      2
+2      2
+3      2
+4      2
+      ..
+435    2
+436    2
+437    2
+438    2
+439    2
+Length: 440, dtype: int64
+clustering score: 
+0.736779092161402
+10 agglomerative clustering:
+0      1
+1      1
+2      1
+3      1
+4      1
+      ..
+435    1
+436    1
+437    1
+438    1
+439    1
+Length: 440, dtype: int64
+clustering score: 
+0.6143843111510964
+---------clustering evaluation-----------
+        Algorithm          data   k  Silhouette Score
+0          Kmeans      Original   3          0.477018
+1   Agglomerative      Original   3          0.745993
+2          Kmeans  Standardized   3          0.333917
+3   Agglomerative  Standardized   3          0.767580
+4          Kmeans      Original   5          0.363472
+5   Agglomerative      Original   5          0.714790
+6          Kmeans  Standardized   5          0.351567
+7   Agglomerative  Standardized   5          0.736779
+8          Kmeans      Original  10          0.269358
+9   Agglomerative      Original  10          0.516688
+10         Kmeans  Standardized  10          0.291419
+11  Agglomerative  Standardized  10          0.614384
+---------best score-----------
+0.7675801420229834
+
+------------------Part 3--------------------
+-------------orginal data----------------
+       UserName  ...           Sentiment
+0          3799  ...             Neutral
+1          3800  ...            Positive
+2          3801  ...            Positive
+3          3802  ...            Positive
+4          3803  ...  Extremely Negative
+...         ...  ...                 ...
+41152     44951  ...             Neutral
+41153     44952  ...  Extremely Negative
+41154     44953  ...            Positive
+41155     44954  ...             Neutral
+41156     44955  ...            Negative
+
+[41157 rows x 6 columns]
+-------------possible sentiment----------------
+['Positive', 'Negative', 'Neutral', 'Extremely Positive', 'Extremely Negative']
+-------------second most popular----------------
+Negative
+-------------most popular date----------------
+25-03-2020
+-------------lower case tweet----------------
+0        @menyrbie @phil_gahan @chrisitv https://t.co/i...
+1        advice talk to your neighbours family to excha...
+2        coronavirus australia: woolworths to give elde...
+3        my food stock is not the only one which is emp...
+4        me, ready to go at supermarket during the #cov...
+                               ...                        
+41152    airline pilots offering to stock supermarket s...
+41153    response to complaint not provided citing covi...
+41154    you know itâs getting tough when @kameronwild...
+41155    is it wrong that the smell of hand sanitizer i...
+41156    @tartiicat well new/used rift s are going for ...
+Name: OriginalTweet, Length: 41157, dtype: object
+-------------remove non-character----------------
+0         menyrbie  phil gahan  chrisitv https   t co i...
+1        advice talk to your neighbours family to excha...
+2        coronavirus australia  woolworths to give elde...
+3        my food stock is not the only one which is emp...
+4        me  ready to go at supermarket during the  cov...
+                               ...                        
+41152    airline pilots offering to stock supermarket s...
+41153    response to complaint not provided citing covi...
+41154    you know it  s getting tough when  kameronwild...
+41155    is it wrong that the smell of hand sanitizer i...
+41156     tartiicat well new used rift s are going for ...
+Name: OriginalTweet, Length: 41157, dtype: object
+-------------remove multiple whitespace----------------
+0        menyrbie phil gahan chrisitv https t co ifz fa...
+1        advice talk to your neighbours family to excha...
+2        coronavirus australia woolworths to give elder...
+3        my food stock is not the only one which is emp...
+4        me ready to go at supermarket during the covid...
+                               ...                        
+41152    airline pilots offering to stock supermarket s...
+41153    response to complaint not provided citing covi...
+41154    you know it s getting tough when kameronwilds ...
+41155    is it wrong that the smell of hand sanitizer i...
+41156    tartiicat well new used rift s are going for o...
+Name: OriginalTweet, Length: 41157, dtype: object
+-------------tokenize----------------
+0        [menyrbie, phil, gahan, chrisitv, https, t, co...
+1        [advice, talk, to, your, neighbours, family, t...
+2        [coronavirus, australia, woolworths, to, give,...
+3        [my, food, stock, is, not, the, only, one, whi...
+4        [me, ready, to, go, at, supermarket, during, t...
+                               ...                        
+41152    [airline, pilots, offering, to, stock, superma...
+41153    [response, to, complaint, not, provided, citin...
+41154    [you, know, it, s, getting, tough, when, kamer...
+41155    [is, it, wrong, that, the, smell, of, hand, sa...
+41156    [tartiicat, well, new, used, rift, s, are, goi...
+Name: OriginalTweet, Length: 41157, dtype: object
+-------------word counts repetition----------------
+1350959
+--------word counts without repetition----------
+80071
+--------frequent words----------
+['the', 'to', 't', 'co', 'and', 'https', 'covid', 'of', 'a', 'in']
+--------remove stop words----------
+690672
+78929
+['https', 'covid', 'coronavirus', 'prices', 'food', 'supermarket', 'store', 'grocery', 'people', 'amp']
+0        [menyrbie, phil, gahan, chrisitv, https, ifz, ...
+1        [advice, talk, neighbours, family, exchange, p...
+2        [coronavirus, australia, woolworths, give, eld...
+3        [food, stock, empty, don, panic, food, stay, c...
+4        [ready, supermarket, covid, outbreak, paranoid...
+                               ...                        
+41152    [airline, pilots, offering, stock, supermarket...
+41153    [response, complaint, provided, citing, covid,...
+41154    [tough, kameronwilds, rationing, toilet, paper...
+41155    [wrong, smell, hand, sanitizer, starting, turn...
+41156    [tartiicat, rift, amazon, normal, market, pric...
+Name: OriginalTweet, Length: 41157, dtype: object
+-------------stemming-------------
+0        [menyrbi, phil, gahan, chrisitv, https, ifz, f...
+1        [advic, talk, neighbour, famili, exchang, phon...
+2        [coronavirus, australia, woolworth, give, elde...
+3        [food, stock, empti, don, panic, food, stay, c...
+4        [readi, supermarket, covid, outbreak, paranoid...
+                               ...                        
+41152    [airlin, pilot, offer, stock, supermarket, she...
+41153    [respons, complaint, provid, cite, covid, rela...
+41154    [tough, kameronwild, ration, toilet, paper, co...
+41155    [wrong, smell, hand, sanit, start, turn, coron...
+41156    [tartiicat, rift, amazon, normal, market, pric...
+Name: OriginalTweet, Length: 41157, dtype: object
+-------------predict-------------
+['Neutral' 'Positive' 'Positive' ... 'Positive' 'Neutral' 'Negative']
+-------------accuracy-------------
+0.994
